@@ -1,0 +1,75 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "NEXT_PUBLIC_APP_ENV",
+    "NEXT_PUBLIC_NODE_ENV",
+    "NEXT_PUBLIC_VERSION",
+
+    "NEXT_PUBLIC_BASE_URL",
+
+    "NEXT_PUBLIC_FIREBASE_API_KEY",
+    "NEXT_PUBLIC_FIREBASE_APP_ID",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+
+    "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+
+    "NEXT_PUBLIC_SENTRY_DSN",
+
+    "SENTRY_PROJECT",
+    "SENTRY_ORG",
+
+    "DATABASE_URL",
+    "DIRECT_URL",
+    "AUTH_SECRET",
+    "AUTH_GOOGLE_ID",
+    "AUTH_GOOGLE_SECRET",
+    "AUTH_RESEND_KEY"
+  ],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "codegen": {
+      "dependsOn": ["^codegen"]
+    },
+    "ci:prepare": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:up": {},
+    "db:down": {},
+    "env:local": {
+      "cache": false
+    },
+    "env:dev": {
+      "cache": false
+    },
+    "env:staging": {
+      "cache": false
+    },
+    "env:prod": {
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
