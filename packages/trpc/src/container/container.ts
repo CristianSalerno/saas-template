@@ -10,4 +10,5 @@ export {
   injectable as Service,
   injectable as Repository,
   singleton as Global,
+  delay,
 } from "tsyringe";

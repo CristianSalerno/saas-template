@@ -1,0 +1,78 @@
+import "reflect-metadata";
+import { TRPCError } from "@trpc/server";
+import { mockDeep } from "jest-mock-extended";
+import { Container, DependencyContainer } from "@repo/trpc/container";
+import { UserRepository } from "./user.repository";
+import { UserResolver } from "./user.resolver";
+import { UserResolverMock } from "./user.resolver.mock";
+
+describe("[UserRepository] Methods Test Suite", () => {
+  let container: DependencyContainer;
+  const repository = mockDeep<UserRepository>();
+
+  beforeEach(() => {
+    container = Container.createChildContainer();
+    container.register(UserRepository, {
+      useValue: repository,
+    });
+    container.register(UserResolver, UserResolver);
+  });
+
+  afterEach(() => {
+    container.reset();
+  });
+
+  it("should be resolved by the container", async () => {
+    // Dependencies
+    expect(container.isRegistered(UserRepository)).toBeTruthy();
+
+    // Resolver
+    expect(container.isRegistered(UserResolver)).toBeTruthy();
+    expect(container.resolve(UserResolver)).toBeTruthy();
+  });
+
+  it("should return user if session is active", async () => {
+    const resolver = container.resolve(UserResolver);
+    const resolverMock = new UserResolverMock().info({});
+
+    repository.userInfo.mockResolvedValue(resolverMock.output);
+
+    // Act
+    const result = await resolver.info({
+      ctx: resolverMock.ctx,
+      input: resolverMock.input,
+    });
+
+    // Assert
+    expect(result).toBeDefined();
+    expect(result?.id).toBe(resolverMock.ctx.session.user.id);
+    expect(result?.email).toBe(resolverMock.ctx.session.user.email);
+    expect(result?.name).toBe(resolverMock.ctx.session.user.name);
+    expect(result?.image).toBe(resolverMock.ctx.session.user.image);
+    expect(result?.role).toBe(resolverMock.ctx.session.user.role);
+  });
+
+  it("should not allow the call having no session", async () => {
+    const resolver = container.resolve(UserResolver);
+    const resolverMock = new UserResolverMock().info({});
+
+    repository.userInfo.mockResolvedValue(resolverMock.output);
+
+    // Act and Assert
+    try {
+      await resolver.info({
+        ctx: {
+          ...resolverMock.ctx,
+          // @ts-expect-error -- Testing purposes
+          session: undefined,
+        },
+        input: resolverMock.input,
+      });
+    } catch (err) {
+      const error = err as Error;
+      expect(error).toBeDefined();
+      expect(error instanceof TRPCError).toBeTruthy();
+      expect(error.message).toBe("You are not allowed to access this resource.");
+    }
+  });
+});

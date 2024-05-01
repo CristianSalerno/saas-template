@@ -1,9 +1,9 @@
-import { prisma, PrismaClient } from "@repo/database/prisma";
-import { Registry } from "@repo/trpc/container";
+import { prisma } from "@repo/database/prisma";
+import { ContainerTokens, Registry } from "@repo/trpc/container";
 
 @Registry([
   {
-    token: PrismaClient,
+    token: ContainerTokens.Prisma,
     useValue: prisma,
   },
 ])

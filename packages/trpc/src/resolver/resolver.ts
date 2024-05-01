@@ -1,6 +1,6 @@
 import { ProcedureResolverOptions } from "@trpc/server/unstable-core-do-not-import";
 import { InjectionToken } from "../container";
-import { Context } from "./context";
+import { Context } from "../context";
 
 type FunctionKeys<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => any ? K : never;

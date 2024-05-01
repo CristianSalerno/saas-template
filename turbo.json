@@ -67,6 +67,9 @@
     "test": {
       "dependsOn": ["^test"]
     },
+    "test:server": {
+      "dependsOn": ["^test:server"]
+    },
     "test:watch": {
       "cache": false,
       "persistent": true

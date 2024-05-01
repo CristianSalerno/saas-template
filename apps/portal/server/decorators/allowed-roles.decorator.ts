@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { UserRole } from "@repo/database";
-import { Context, ProcedureResolverOpts } from "@repo/trpc";
+import { Context } from "@repo/trpc/context";
+import { ProcedureResolverOpts } from "@repo/trpc/resolver";
 
 type DecoratedFunction<TContext, Input, Output> = (
   opts: ProcedureResolverOpts<TContext, Input>,

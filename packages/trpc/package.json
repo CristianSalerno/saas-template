@@ -29,9 +29,7 @@
     "@repo/config": "workspace:*",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.11.16",
-    "@types/uuid": "^9.0.8",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vitest": "^1.2.2"
+    "@types/uuid": "^9.0.8"
   },
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -47,6 +45,14 @@
     "./constants": {
       "import": "./src/constants/index.ts",
       "require": "./src/constants/index.ts"
+    },
+    "./resolver": {
+      "import": "./src/resolver/index.ts",
+      "require": "./src/resolver/index.ts"
+    },
+    "./context": {
+      "import": "./src/context.ts",
+      "require": "./src/context.ts"
     }
   },
   "typesVersions": {
@@ -54,7 +60,9 @@
       "*": [
         "src/index.ts",
         "src/container/index.ts",
-        "src/constants/index.ts"
+        "src/constants/index.ts",
+        "src/resolver/index.ts",
+        "src/context.ts"
       ]
     }
   }
