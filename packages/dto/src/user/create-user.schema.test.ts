@@ -1,10 +1,14 @@
 import { faker } from "@faker-js/faker";
 import { describe, expect, it } from "vitest";
+import { ZodError } from "zod";
 import { UserRole } from "@repo/database";
 import { CreateUserSchema } from "./create-user.schema";
 
-describe("Create User Schema", () => {
-  it("Successfully parses payload", () => {
+describe("create User Schema", () => {
+  it("successfully parses payload", () => {
+    expect.hasAssertions();
+
+    // Arrange
     const payload = {
       email: faker.internet.email(),
       name: faker.person.firstName(),
@@ -12,14 +16,19 @@ describe("Create User Schema", () => {
       image: faker.image.url(),
     };
 
+    // Act & Assert
     expect(CreateUserSchema.parse(payload)).toMatchObject(payload);
   });
 
-  it("Throws an error when payload in not correct", () => {
+  it("throws an error when payload in not correct", () => {
+    expect.hasAssertions();
+
+    // Arrange
     const payload = {
       email: faker.internet.userName(),
     };
 
-    expect(() => CreateUserSchema.parse(payload)).toThrowError();
+    // Act & Assert
+    expect(() => CreateUserSchema.parse(payload)).toThrow(ZodError);
   });
 });

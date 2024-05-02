@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { TRPCError } from "@trpc/server";
 import { mockDeep } from "jest-mock-extended";
 import { Container, DependencyContainer } from "@repo/trpc/container";
@@ -45,6 +44,7 @@ describe("[UserRepository] Methods Test Suite", () => {
 
     // Assert
     expect(result).toBeDefined();
+
     expect(result?.id).toBe(resolverMock.ctx.session.user.id);
     expect(result?.email).toBe(resolverMock.ctx.session.user.email);
     expect(result?.name).toBe(resolverMock.ctx.session.user.name);
@@ -58,9 +58,9 @@ describe("[UserRepository] Methods Test Suite", () => {
 
     repository.userInfo.mockResolvedValue(resolverMock.output);
 
-    // Act and Assert
-    try {
-      await resolver.info({
+    // Define Act
+    const actor = () =>
+      resolver.info({
         ctx: {
           ...resolverMock.ctx,
           // @ts-expect-error -- Testing purposes
@@ -68,11 +68,9 @@ describe("[UserRepository] Methods Test Suite", () => {
         },
         input: resolverMock.input,
       });
-    } catch (err) {
-      const error = err as Error;
-      expect(error).toBeDefined();
-      expect(error instanceof TRPCError).toBeTruthy();
-      expect(error.message).toBe("You are not allowed to access this resource.");
-    }
+
+    // Assert
+    await expect(actor).rejects.toThrow(TRPCError);
+    await expect(actor).rejects.toThrow("You are not allowed to access this resource.");
   });
 });

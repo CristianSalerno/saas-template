@@ -1,16 +1,15 @@
 {
-  "name": "@repo/common",
+  "name": "@repo/dto",
   "scripts": {
     "clean": "git clean -xdf .turbo node_modules dist .cache tsconfig.tsbuildinfo",
     "lint": "eslint src/ --ext .ts,.tsx",
-    "lint:fix": "eslint src/ --ext .ts,.tsx --fix"
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
-    "zod": "^3.22.4",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "react-string-replace": "^1.1.1",
-    "tailwind-merge": "^2.2.1"
+    "@repo/database": "workspace:*",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

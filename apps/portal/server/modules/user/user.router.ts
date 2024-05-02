@@ -1,7 +1,7 @@
-import { loginQuerySchema } from "@repo/common";
+import { UserInfoSchema } from "@repo/dto";
 import { protectedProcedure, router } from "@repo/trpc";
 import { UserResolver } from "./user.resolver";
 
 export const UserRouter = router({
-  info: protectedProcedure.input(loginQuerySchema).query(UserResolver.resolver("info")),
+  info: protectedProcedure.input(UserInfoSchema).query(UserResolver.resolver("info")),
 });

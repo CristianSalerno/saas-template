@@ -4,18 +4,25 @@ import { ZodError } from "zod";
 import { UserRole } from "@repo/database";
 import { UpdateUserSchema } from "./update-user.schema";
 
-describe("Update User Schema", () => {
-  it("Successfully parses payload", () => {
+describe("update User Schema", () => {
+  it("successfully parses payload", () => {
+    expect.hasAssertions();
+
+    // Arrange
     const payload = {
       id: faker.string.uuid(),
       name: faker.person.firstName(),
       image: faker.image.url(),
     };
 
+    // Act & Assert
     expect(UpdateUserSchema.parse(payload)).toMatchObject(payload);
   });
 
-  it("Throws an error when payload in not correct", () => {
+  it("throws an error when payload in not correct", () => {
+    expect.hasAssertions();
+
+    // Arrange
     const payload = {
       email: faker.internet.email(),
       name: faker.person.firstName(),
@@ -23,13 +30,11 @@ describe("Update User Schema", () => {
       image: faker.image.url(),
     };
 
-    try {
-      UpdateUserSchema.parse(payload);
-    } catch (err) {
-      const error = err as ZodError;
-      expect(error instanceof ZodError).toBe(true);
-      expect(error.errors[0]?.message).toBe("Required");
-      expect(error.errors[0]?.path[0]).toBe("id");
-    }
+    // Act
+    const actor = () => UpdateUserSchema.parse(payload);
+
+    // Assert
+    expect(actor).toThrow(ZodError);
+    expect(actor).toThrow("Required");
   });
 });

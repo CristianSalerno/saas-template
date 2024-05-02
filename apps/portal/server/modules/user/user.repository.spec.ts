@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { faker } from "@faker-js/faker";
 import { PrismockClient } from "prismock";
 import { Container, ContainerTokens, DependencyContainer } from "@repo/trpc/container";

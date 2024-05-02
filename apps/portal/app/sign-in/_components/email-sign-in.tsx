@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginQueryInput, loginQuerySchema } from "@repo/common";
 import {
   Button,
   FormControl,
@@ -13,8 +12,10 @@ import {
   Input,
 } from "@repo/ui";
 import { useForm } from "react-hook-form";
+import { EmailLinkInput, EmailLinkSchema } from "@repo/dto";
 import { emailLinkSignIn } from "@/server/actions";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO: fix this
 function createFormData(obj: any) {
   const formData = new FormData();
   for (const key in obj) {
@@ -24,14 +25,14 @@ function createFormData(obj: any) {
 }
 
 export function EmailSignIn() {
-  const form = useForm<LoginQueryInput>({
+  const form = useForm<EmailLinkInput>({
     mode: "all",
     reValidateMode: "onBlur",
     criteriaMode: "all",
-    resolver: zodResolver(loginQuerySchema),
+    resolver: zodResolver(EmailLinkSchema),
   });
 
-  const onSubmit = form.handleSubmit(async (data: LoginQueryInput) => {
+  const onSubmit = form.handleSubmit(async (data: EmailLinkInput) => {
     try {
       await emailLinkSignIn(createFormData(data));
     } catch (error) {
