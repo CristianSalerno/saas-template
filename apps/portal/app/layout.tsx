@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@repo/ui/styles/shared-globals.css";
+import { MicrosoftClarity, AnalyticsWrapper } from "@repo/analytics/components";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { TrpcProvider } from "@/lib/trpc-provider";
 
@@ -19,12 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <MicrosoftClarity />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           disableTransitionOnChange
           enableSystem>
-          <TrpcProvider>{children}</TrpcProvider>
+          <TrpcProvider>
+            <AnalyticsWrapper>{children}</AnalyticsWrapper>
+          </TrpcProvider>
         </ThemeProvider>
       </body>
     </html>

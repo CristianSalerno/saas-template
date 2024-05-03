@@ -1,4 +1,3 @@
-import { TRPCError } from "@trpc/server";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { v4 as generateUuidV4 } from "uuid";
 import {
@@ -8,6 +7,7 @@ import {
   HEADER_ALLOW_ORIGIN,
   HEADER_REFERRER_POLICY,
   HEADER_REQUEST_ID,
+  HEADER_USER_ID,
 } from "@repo/trpc/constants";
 import { Container, ContainerTokens } from "@repo/trpc/container";
 import { auth } from "./auth";
@@ -17,12 +17,13 @@ export const createContext = async (opts?: FetchCreateContextFnOptions) => {
   if (!opts) {
     const currentSession = await auth();
 
-    const container = Container.createChildContainer().register(
-      ContainerTokens.RequestId,
-      {
+    const container = Container.createChildContainer()
+      .register(ContainerTokens.RequestId, {
         useValue: `server_${generateUuidV4()}`,
-      },
-    );
+      })
+      .register(ContainerTokens.UserId, {
+        useValue: currentSession?.user.id,
+      });
 
     return {
       container,
@@ -32,15 +33,11 @@ export const createContext = async (opts?: FetchCreateContextFnOptions) => {
 
   // This is a client-side request
   const requestId = opts.req.headers.get(HEADER_REQUEST_ID);
-  if (!requestId) {
-    throw new TRPCError({
-      code: "BAD_REQUEST",
-      message: "Missing request ID",
-    });
-  }
+  const userId = opts.req.headers.get(HEADER_USER_ID);
 
   // Apply header with unique ID to every request
-  opts.resHeaders.set(HEADER_REQUEST_ID, requestId);
+  requestId && opts.resHeaders.set(HEADER_REQUEST_ID, requestId);
+  userId && opts.resHeaders.set(HEADER_USER_ID, userId);
   // Add all headers here instead of next.config.js as it is throwing error( Cannot set headers after they are sent to the client) for OPTIONS method
   // It is known to happen only in Dev Mode.
   opts.resHeaders.set(HEADER_ALLOW_CREADENTIALS, "true");

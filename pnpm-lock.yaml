@@ -71,6 +71,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.51.3)
+      '@repo/analytics':
+        specifier: workspace:^
+        version: link:../../packages/analytics
       '@repo/auth':
         specifier: workspace:^
         version: link:../../packages/auth
@@ -183,6 +186,49 @@ importers:
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(jest@29.7.0)(typescript@5.4.5)
+
+  packages/analytics:
+    dependencies:
+      '@analytics/google-analytics':
+        specifier: ^1.0.7
+        version: 1.0.7
+      '@analytics/mixpanel':
+        specifier: ^0.4.0
+        version: 0.4.0
+      '@next/third-parties':
+        specifier: ^14.2.3
+        version: 14.2.3(next@14.2.3)(react@18.3.1)
+      '@repo/common':
+        specifier: workspace:^
+        version: link:../common
+      '@types/mixpanel-browser':
+        specifier: ^2.49.0
+        version: 2.49.0
+      analytics:
+        specifier: ^0.8.11
+        version: 0.8.11(@types/dlv@1.1.4)
+      mixpanel-browser:
+        specifier: ^2.50.0
+        version: 2.50.0
+      next:
+        specifier: ^14.1.0
+        version: 14.2.3(@babel/core@7.24.4)(react-dom@18.3.1)(react@18.3.1)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
+      use-analytics:
+        specifier: ^1.1.0
+        version: 1.1.0(react@18.3.1)
+      zod:
+        specifier: ^3.22.4
+        version: 3.23.4
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.1
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
 
   packages/auth:
     dependencies:
@@ -297,9 +343,6 @@ importers:
         specifier: ^8.17.0
         version: 8.17.0(bufferutil@4.0.8)
     devDependencies:
-      '@prisma/generator-helper':
-        specifier: ^5.13.0
-        version: 5.13.0
       '@repo/config':
         specifier: workspace:*
         version: link:../config
@@ -503,6 +546,62 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
+
+  /@analytics/cookie-utils@0.2.12:
+    resolution: {integrity: sha512-2h/yuIu3kmu+ZJlKmlT6GoRvUEY2k1BbQBezEv5kGhnn9KpmzPz715Y3GmM2i+m7Y0QmBdVUoA260dQZkofs2A==}
+    dependencies:
+      '@analytics/global-storage-utils': 0.1.7
+    dev: false
+
+  /@analytics/core@0.12.9(@types/dlv@1.1.4):
+    resolution: {integrity: sha512-jac5Q8iapeDiURFu6BXqT9FCHOENaazKgWXNdlr5lqE9X70XRDi+96weNVNUmkUoAjcP9Yf+xFwGy2dhP5+BnQ==}
+    dependencies:
+      '@analytics/global-storage-utils': 0.1.7
+      '@analytics/type-utils': 0.6.2
+      analytics-utils: 1.0.12(@types/dlv@1.1.4)
+    transitivePeerDependencies:
+      - '@types/dlv'
+    dev: false
+
+  /@analytics/global-storage-utils@0.1.7:
+    resolution: {integrity: sha512-V+spzGLZYm4biZT4uefaylm80SrLXf8WOTv9hCgA46cLcyxx3LD4GCpssp1lj+RcWLl/uXJQBRO4Mnn/o1x6Gw==}
+    dependencies:
+      '@analytics/type-utils': 0.6.2
+    dev: false
+
+  /@analytics/google-analytics@1.0.7:
+    resolution: {integrity: sha512-KZ69NaMIi5kOcouzqI8cu7tZgQl7ziGiRahfU6zniUf32G8bv7wQDh73JFz1NwO6gBPloUc+5BzEoWzScM5Rgw==}
+    dev: false
+
+  /@analytics/localstorage-utils@0.1.10:
+    resolution: {integrity: sha512-uJS+Jp1yLG5VFCgA5T82ZODYBS0xuDQx0NtAZrgbqt9j51BX3TcgmOez5LVkrUNu/lpbxjCLq35I4TKj78VmOQ==}
+    dependencies:
+      '@analytics/global-storage-utils': 0.1.7
+    dev: false
+
+  /@analytics/mixpanel@0.4.0:
+    resolution: {integrity: sha512-0+mTpLEHVsNPPQI3hK3c6QAHVlVFVBOWOL6eXF+DZEvhgCpDA7f0jSRG8TRsvKU2PSpeTpFhee5x+tlP4rHvMA==}
+    dev: false
+
+  /@analytics/session-storage-utils@0.0.7:
+    resolution: {integrity: sha512-PSv40UxG96HVcjY15e3zOqU2n8IqXnH8XvTkg1X43uXNTKVSebiI2kUjA3Q7ESFbw5DPwcLbJhV7GforpuBLDw==}
+    dependencies:
+      '@analytics/global-storage-utils': 0.1.7
+    dev: false
+
+  /@analytics/storage-utils@0.4.2:
+    resolution: {integrity: sha512-AXObwyVQw9h2uJh1t2hUgabtVxzYpW+7uKVbdHQK80vr3Td5rrmCxrCxarh7HUuAgSDZ0bZWqmYxVgmwKceaLg==}
+    dependencies:
+      '@analytics/cookie-utils': 0.2.12
+      '@analytics/global-storage-utils': 0.1.7
+      '@analytics/localstorage-utils': 0.1.10
+      '@analytics/session-storage-utils': 0.0.7
+      '@analytics/type-utils': 0.6.2
+    dev: false
+
+  /@analytics/type-utils@0.6.2:
+    resolution: {integrity: sha512-TD+xbmsBLyYy/IxFimW/YL/9L2IEnM7/EoV9Aeh56U64Ify8o27HJcKjo38XY9Tcn0uOq1AX3thkKgvtWvwFQg==}
+    dev: false
 
   /@asamuzakjp/dom-selector@2.0.2:
     resolution: {integrity: sha512-x1KXOatwofR6ZAYzXRBL5wrdV0vwNxlTCK9NCuLqAzQYARqGcvFwiJA6A1ERuh+dgeA4Dxm3JBYictIes+SqUQ==}
@@ -2029,6 +2128,17 @@ packages:
     requiresBuild: true
     optional: true
 
+  /@next/third-parties@14.2.3(next@14.2.3)(react@18.3.1):
+    resolution: {integrity: sha512-j4E2xBSsEZq4VX2pVm3LpGltSwCxETic6glJWfHyYQvpoMdplCAYrQKpF+E9Gg3jfsrfmRAIdTE11m+biBCx1Q==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0
+      react: ^18.2.0
+    dependencies:
+      next: 14.2.3(@babel/core@7.24.4)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      third-party-capital: 1.0.20
+    dev: false
+
   /@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1:
     resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==}
     dependencies:
@@ -2985,6 +3095,12 @@ packages:
     dev: true
     optional: true
 
+  /@rrweb/types@2.0.0-alpha.13:
+    resolution: {integrity: sha512-ytq+MeVm/vP2ybw+gTAN3Xvt7HN2yS+wlbfnwHpQMftxrwzq0kEZHdw+Jp5WUvvpONWzXriNAUU9dW0qLGkzNg==}
+    dependencies:
+      rrweb-snapshot: 2.0.0-alpha.13
+    dev: false
+
   /@rushstack/eslint-patch@1.10.2:
     resolution: {integrity: sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==}
     dev: true
@@ -3440,6 +3556,10 @@ packages:
       '@types/node': 20.12.7
     dev: true
 
+  /@types/css-font-loading-module@0.0.7:
+    resolution: {integrity: sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==}
+    dev: false
+
   /@types/d3-array@3.2.1:
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
     dev: false
@@ -3487,6 +3607,10 @@ packages:
     dependencies:
       '@types/ms': 0.7.34
     dev: true
+
+  /@types/dlv@1.1.4:
+    resolution: {integrity: sha512-m8KmImw4Jt+4rIgupwfivrWEOnj1LzkmKkqbh075uG13eTQ1ZxHWT6T0vIdSQhLIjQCiR0n0lZdtyDOPO1x2Mw==}
+    dev: false
 
   /@types/eslint@8.56.10:
     resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
@@ -3594,6 +3718,10 @@ packages:
   /@types/minimist@1.2.5:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
+
+  /@types/mixpanel-browser@2.49.0:
+    resolution: {integrity: sha512-StmgUnS58d44DmIAEX9Kk8qwisAYCl6E2qulIjYyHXUPuJCPOuyUMTTKBp+aU2F2do+kxAzCxiBtsB4fnBT9Fg==}
+    dev: false
 
   /@types/ms@0.7.34:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
@@ -4342,6 +4470,10 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
+  /@xstate/fsm@1.6.5:
+    resolution: {integrity: sha512-b5o1I6aLNeYlU/3CPlj/Z91ybk1gUsKT+5NAJI+2W4UjvS5KLG28K9v5UvNoFVjHV8PajVZ00RH3vnjyQO7ZAw==}
+    dev: false
+
   /JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
     hasBin: true
@@ -4440,6 +4572,25 @@ packages:
       require-from-string: 2.0.2
       uri-js: 4.4.1
     dev: true
+
+  /analytics-utils@1.0.12(@types/dlv@1.1.4):
+    resolution: {integrity: sha512-WvV2YWgsnXLxaY0QYux0crpBAg/0JA763NmbMVz22jKhMPo7dpTBet8G2IlF7ixTjLDzGlkHk1ZaKqqQmjJ+4w==}
+    peerDependencies:
+      '@types/dlv': ^1.0.0
+    dependencies:
+      '@analytics/type-utils': 0.6.2
+      '@types/dlv': 1.1.4
+      dlv: 1.1.3
+    dev: false
+
+  /analytics@0.8.11(@types/dlv@1.1.4):
+    resolution: {integrity: sha512-gNLaprOiuZSviP8rC99E5uk+AWQZJk1OHS350v3XdpPDnsGyxHlNo7s9ZQJeOhvMbG5XOBY3fgZY/tpOl7hiGw==}
+    dependencies:
+      '@analytics/core': 0.12.9(@types/dlv@1.1.4)
+      '@analytics/storage-utils': 0.4.2
+    transitivePeerDependencies:
+      - '@types/dlv'
+    dev: false
 
   /ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -4809,6 +4960,11 @@ packages:
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  /base64-arraybuffer@1.0.2:
+    resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
+    engines: {node: '>= 0.6.0'}
+    dev: false
 
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -6988,6 +7144,10 @@ packages:
     dependencies:
       pend: 1.2.0
     dev: true
+
+  /fflate@0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
 
   /fflate@0.8.2:
     resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
@@ -9358,6 +9518,16 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
+
+  /mixpanel-browser@2.50.0:
+    resolution: {integrity: sha512-iP4sbSRMemjWbnH+KQZRxZ360bcXtFpoQuUiWjjdw9AsURn0MrR9/2RnPOJ8J8tt1dMm7kTKwOjGV8pkbWbmAA==}
+    dependencies:
+      rrweb: 2.0.0-alpha.4
+    dev: false
+
   /mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
     dev: false
@@ -10813,9 +10983,36 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /rrdom@0.1.7:
+    resolution: {integrity: sha512-ZLd8f14z9pUy2Hk9y636cNv5Y2BMnNEY99wxzW9tD2BLDfe1xFxtLjB4q/xCBYo6HRe0wofzKzjm4JojmpBfFw==}
+    dependencies:
+      rrweb-snapshot: 2.0.0-alpha.4
+    dev: false
+
   /rrweb-cssom@0.6.0:
     resolution: {integrity: sha512-APM0Gt1KoXBz0iIkkdB/kfvGOwC4UuJFeG/c+yV7wSc7q96cG/kJ0HiYCnzivD9SB53cLV1MlHFNfOuPaadYSw==}
     dev: true
+
+  /rrweb-snapshot@2.0.0-alpha.13:
+    resolution: {integrity: sha512-slbhNBCYjxLGCeH95a67ECCy5a22nloXp1F5wF7DCzUNw80FN7tF9Lef1sRGLNo32g3mNqTc2sWLATlKejMxYw==}
+    dev: false
+
+  /rrweb-snapshot@2.0.0-alpha.4:
+    resolution: {integrity: sha512-KQ2OtPpXO5jLYqg1OnXS/Hf+EzqnZyP5A+XPqBCjYpj3XIje/Od4gdUwjbFo3cVuWq5Cw5Y1d3/xwgIS7/XpQQ==}
+    dev: false
+
+  /rrweb@2.0.0-alpha.4:
+    resolution: {integrity: sha512-wEHUILbxDPcNwkM3m4qgPgXAiBJyqCbbOHyVoNEVBJzHszWEFYyTbrZqUdeb1EfmTRC2PsumCIkVcomJ/xcOzA==}
+    dependencies:
+      '@rrweb/types': 2.0.0-alpha.13
+      '@types/css-font-loading-module': 0.0.7
+      '@xstate/fsm': 1.6.5
+      base64-arraybuffer: 1.0.2
+      fflate: 0.4.8
+      mitt: 3.0.1
+      rrdom: 0.1.7
+      rrweb-snapshot: 2.0.0-alpha.4
+    dev: false
 
   /run-async@2.4.1:
     resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}
@@ -11560,6 +11757,10 @@ packages:
     dependencies:
       any-promise: 1.3.0
 
+  /third-party-capital@1.0.20:
+    resolution: {integrity: sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==}
+    dev: false
+
   /through2@4.0.2:
     resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
     dependencies:
@@ -12119,6 +12320,17 @@ packages:
       querystringify: 2.2.0
       requires-port: 1.0.0
     dev: true
+
+  /use-analytics@1.1.0(react@18.3.1):
+    resolution: {integrity: sha512-1PMT5doiCoTm6ng9PscCHuFgl8vYNSFgGizXuFlmEBqnaRJ+KnygKnETUbBJ1W7MJPWQeHwA5Mys9t7b4P8ijw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      react: 18.3.1
+      tiny-invariant: 1.3.3
+    dev: false
 
   /use-callback-ref@1.3.2(@types/react@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-elOQwe6Q8gqZgDA8mrh44qRTQqpIHDcZ3hXTLjBe1i4ph8XpNJnO+aQf3NaG+lriLopI4HMx9VjQLfPQ6vhnoA==}

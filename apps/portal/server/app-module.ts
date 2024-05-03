@@ -14,6 +14,7 @@ import { ContainerTokens, Registry } from "@repo/trpc/container";
         { name: "Container" },
         {
           requestId: container.resolve(ContainerTokens.RequestId),
+          userId: container.resolve(ContainerTokens.UserId),
         },
       ),
   },

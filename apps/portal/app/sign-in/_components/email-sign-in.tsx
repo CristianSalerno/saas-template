@@ -27,7 +27,7 @@ function createFormData(obj: any) {
 export function EmailSignIn() {
   const form = useForm<EmailLinkInput>({
     mode: "all",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     criteriaMode: "all",
     resolver: zodResolver(EmailLinkSchema),
   });

@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@repo/analytics": "workspace:^",
     "@repo/auth": "workspace:^",
     "@repo/common": "workspace:*",
     "@repo/database": "workspace:^",

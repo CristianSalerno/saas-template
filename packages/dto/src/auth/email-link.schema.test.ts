@@ -14,6 +14,17 @@ describe("email Link Schema", () => {
     expect(EmailLinkSchema.parse(payload)).toMatchObject(payload);
   });
 
+  it("userInfoSchema: Fails parses payload with email of domain adifferentlooktaxservices.com", () => {
+    expect.hasAssertions();
+
+    const payload = {
+      email: "fake@adifferentlooktaxservices.com",
+    };
+
+    expect(() => EmailLinkSchema.parse(payload)).toThrow(ZodError);
+    expect(() => EmailLinkSchema.parse(payload)).toThrow("Email Domain not allowed.");
+  });
+
   it("userInfoSchema: Throws an error when payload in not correct", () => {
     expect.hasAssertions();
 
