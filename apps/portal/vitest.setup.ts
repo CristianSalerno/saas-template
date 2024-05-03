@@ -28,6 +28,10 @@ vi.mock(
   "server-only",
   vi.fn(() => ({})),
 );
+vi.mock(
+  "@/config/env/client",
+  vi.fn(() => ({})),
+);
 vi.mock("@/server/auth", () => ({
   auth: () =>
     ({

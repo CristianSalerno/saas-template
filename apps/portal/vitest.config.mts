@@ -18,5 +18,5 @@ export default defineConfig({
     passWithNoTests: true,
     setupFiles: [`${__dirname}/vitest.setup.ts`],
   },
-  cacheDir: ".vitest",
+  cacheDir: `${__dirname}/.vitest`,
 });

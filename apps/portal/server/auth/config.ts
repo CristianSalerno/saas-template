@@ -7,8 +7,8 @@ import {
 } from "@repo/auth";
 import { User, UserRole } from "@repo/database";
 import { prisma } from "@repo/database/prisma";
-import { getUserInfo } from "../actions/user";
 import { ApiEnv } from "@/config/env/server";
+import { getUserInfo } from "../actions/user";
 
 export const authConfig: NextAuthConfig = {
   debug: true, // ENV

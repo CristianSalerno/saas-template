@@ -64,23 +64,22 @@ module.exports = {
       settings: {
         "import/resolver": {
           typescript: {
-            project,
+            project: resolve("apps/portal/tsconfig.json"),
           },
         },
       },
     },
-    // adjust the path to your Next.js files
+    // Portal  files
     {
-      files: ["apps/**/*.ts", "apps/**/*.tsx"],
+      files: ["apps/portal/**/*.ts", "apps/portal/**/*.tsx"],
       extends: [
-        "eslint:recommended",
+        "prettier",
+        "eslint-config-turbo",
         require.resolve("@vercel/style-guide/eslint/browser"),
         require.resolve("@vercel/style-guide/eslint/react"),
         require.resolve("@vercel/style-guide/eslint/next"),
         "plugin:@typescript-eslint/recommended",
         "plugin:tailwindcss/recommended",
-        "prettier",
-        "eslint-config-turbo",
       ],
       globals: {
         React: true,
@@ -98,7 +97,7 @@ module.exports = {
       settings: {
         "import/resolver": {
           typescript: {
-            project,
+            project: resolve("apps/portal/tsconfig.json"),
           },
         },
       },
@@ -109,9 +108,9 @@ module.exports = {
       extends: [
         "prettier",
         "eslint-config-turbo",
-        "plugin:@typescript-eslint/recommended",
         require.resolve("@vercel/style-guide/eslint/browser"),
         require.resolve("@vercel/style-guide/eslint/react"),
+        "plugin:@typescript-eslint/recommended",
         "plugin:tailwindcss/recommended",
       ],
       plugins: ["only-warn", "@typescript-eslint", "tailwindcss", "prettier"],
@@ -136,15 +135,22 @@ module.exports = {
       extends: [
         "prettier",
         "eslint-config-turbo",
-        "plugin:@typescript-eslint/recommended",
         require.resolve("@vercel/style-guide/eslint/node"),
+        "plugin:@typescript-eslint/recommended",
       ],
-      plugins: ["@typescript-eslint"],
+      plugins: ["@typescript-eslint", "prettier"],
+      globals: {
+        node: true,
+        browser: true,
+      },
       env: {
         node: true,
+        browser: true,
       },
       rules: {
         "import/no-extraneous-dependencies": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
       },
       settings: {
         "import/resolver": {

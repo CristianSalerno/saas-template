@@ -1,13 +1,13 @@
 import z from "zod";
-import { UserSchema } from "@repo/database/zod";
+import { UserModel } from "@repo/database/zod";
 
-export const UserInfoSchema = UserSchema.pick({
+export const UserInfoSchema = UserModel.pick({
   email: true,
   id: true,
 })
   .extend({
-    email: UserSchema.shape.email.optional(),
-    id: UserSchema.shape.id.optional(),
+    email: UserModel.shape.email.optional(),
+    id: UserModel.shape.id.optional(),
   })
   .refine((data) => data.id || data.email, {
     message: "Either id or email must be provided",

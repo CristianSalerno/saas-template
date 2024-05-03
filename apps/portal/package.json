@@ -29,6 +29,7 @@
     "@repo/common": "workspace:*",
     "@repo/database": "workspace:^",
     "@repo/dto": "workspace:^",
+    "@repo/lib": "workspace:^",
     "@repo/trpc": "workspace:^",
     "@repo/ui": "workspace:*",
     "@sentry/integrations": "^7.105.0",

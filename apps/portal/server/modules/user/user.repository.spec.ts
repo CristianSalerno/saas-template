@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { PrismockClient } from "prismock";
+import { logger } from "@repo/lib";
 import { Container, ContainerTokens, DependencyContainer } from "@repo/trpc/container";
 import { UserRepository } from "./user.repository";
 import { UserRepositoryMock } from "./user.repository.mock";
@@ -7,11 +8,15 @@ import { UserRepositoryMock } from "./user.repository.mock";
 describe("[UserRepository] Methods Test Suite", () => {
   let container: DependencyContainer;
   const prisma = new PrismockClient();
+  const testLogger = logger.getSubLogger({ type: "hidden", name: "TestLogger" });
 
   beforeEach(() => {
     container = Container.createChildContainer();
     container.register(ContainerTokens.Prisma, {
       useValue: prisma,
+    });
+    container.register(ContainerTokens.Logger, {
+      useValue: testLogger,
     });
     container.register(UserRepository, UserRepository);
   });
@@ -23,6 +28,7 @@ describe("[UserRepository] Methods Test Suite", () => {
   it("should be resolved by the container", async () => {
     // Dependencies
     expect(container.isRegistered(ContainerTokens.Prisma)).toBeTruthy();
+    expect(container.isRegistered(ContainerTokens.Logger)).toBeTruthy();
 
     // Repository
     expect(container.isRegistered(UserRepository)).toBeTruthy();

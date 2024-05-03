@@ -3,6 +3,7 @@ import { InjectionToken } from "../container";
 import { Context } from "../context";
 
 type FunctionKeys<T> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- We need to use `any` here for type inference
   [K in keyof T]: T[K] extends (...args: any[]) => any ? K : never;
 }[keyof T];
 
@@ -12,18 +13,6 @@ export type ProcedureResolverOpts<
 > = ProcedureResolverOptions<TContext, unknown, unknown, Input>;
 
 export abstract class AbstractResolver {
-  // TODO: testing the new resolver approach
-  // abstract run(
-  //   opts: ProcedureResolverOptions<Context, unknown, unknown, unknown>,
-  // ): unknown;
-
-  // static createResolver<T extends AbstractResolver>(this: InjectionToken<T>) {
-  //   return (opts: ProcedureResolverOptions<Context, unknown, unknown, unknown>) => {
-  //     const instance = opts.ctx.container.resolve<T>(this);
-  //     return instance.run(opts) as ReturnType<T["run"]>;
-  //   };
-  // }
-
   static resolver<T extends AbstractResolver, Method extends FunctionKeys<T>>(
     this: InjectionToken<T>,
     name: Method,

@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { mockDeep } from "jest-mock-extended";
-import { Container, DependencyContainer } from "@repo/trpc/container";
+import { Logger, logger } from "@repo/lib";
+import { Container, ContainerTokens, DependencyContainer } from "@repo/trpc/container";
 import { UserRepository } from "./user.repository";
 import { UserResolver } from "./user.resolver";
 import { UserResolverMock } from "./user.resolver.mock";
@@ -8,11 +9,15 @@ import { UserResolverMock } from "./user.resolver.mock";
 describe("[UserRepository] Methods Test Suite", () => {
   let container: DependencyContainer;
   const repository = mockDeep<UserRepository>();
+  const testLogger = logger.getSubLogger({ type: "hidden", name: "TestLogger" });
 
   beforeEach(() => {
     container = Container.createChildContainer();
     container.register(UserRepository, {
       useValue: repository,
+    });
+    container.register(ContainerTokens.Logger, {
+      useValue: testLogger,
     });
     container.register(UserResolver, UserResolver);
   });
@@ -24,6 +29,7 @@ describe("[UserRepository] Methods Test Suite", () => {
   it("should be resolved by the container", async () => {
     // Dependencies
     expect(container.isRegistered(UserRepository)).toBeTruthy();
+    expect(container.isRegistered(ContainerTokens.Logger)).toBeTruthy();
 
     // Resolver
     expect(container.isRegistered(UserResolver)).toBeTruthy();

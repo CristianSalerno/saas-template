@@ -12,11 +12,11 @@ import {
   TabsTrigger,
 } from "@repo/ui";
 import { Metadata } from "next";
+import { auth } from "@/server/auth";
 import { MainNav } from "./_components/main-nav";
 import { Overview } from "./_components/overview-chart";
 import { RecentSales } from "./_components/recent-sales";
 import { UserNav } from "./_components/user-nav";
-import { auth } from "@/server/auth";
 
 export const metadata: Metadata = {
   title: "Dashboard",

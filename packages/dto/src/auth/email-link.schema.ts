@@ -1,10 +1,8 @@
 import z from "zod";
-import { UserSchema } from "@repo/database/zod";
+import { UserModel } from "@repo/database/zod";
 
-export const EmailLinkSchema = UserSchema.pick({
+export const EmailLinkSchema = UserModel.pick({
   email: true,
-}).extend({
-  email: UserSchema.shape.email.email(),
 });
 
 export type EmailLinkInput = z.infer<typeof EmailLinkSchema>;
