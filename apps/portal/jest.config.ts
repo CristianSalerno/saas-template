@@ -1,4 +1,5 @@
 import type { Config } from "jest";
+import { compilerOptions } from "./tsconfig.json";
 
 const config: Config = {
   clearMocks: true,
@@ -9,9 +10,13 @@ const config: Config = {
     "^.+\\.(t|j)s$": "ts-jest",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  collectCoverageFrom: ["server/**/*.ts"],
+  collectCoverageFrom: ["src/server/**/*.ts"],
   coverageDirectory: "../coverage",
   testEnvironment: "node",
+  modulePaths: [compilerOptions.baseUrl], // <-- This will be set to 'baseUrl' value
+  moduleNameMapper: {
+    "^@/server/(.*)$": "<rootDir>/src/server/$1",
+  },
 };
 
 export default config;

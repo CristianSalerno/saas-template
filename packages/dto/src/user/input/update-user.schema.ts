@@ -1,7 +1,9 @@
-import { UserModel } from "@repo/database/zod";
+import { InsertUserSchema } from "@repo/database/dto";
 
-export const UpdateUserSchema = UserModel.pick({
+export const UpdateUserSchema = InsertUserSchema.pick({
   id: true,
   name: true,
   image: true,
+}).extend({
+  id: InsertUserSchema.shape.id.unwrap().min(1),
 });

@@ -2,48 +2,35 @@
   "name": "@repo/database",
   "private": true,
   "scripts": {
-    "codegen": "prisma generate",
     "clean": "git clean -xdf .turbo node_modules .cache tsconfig.tsbuildinfo",
     "db:up": "  docker-compose up -d",
     "db:down": "docker-compose down --remove-orphans",
-    "db:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
-    "env:local": "  pnpm vercel:link:dev  && vercel env pull --token $VERCEL_TOKEN --environment=preview",
-    "env:dev": "    pnpm vercel:link:dev  && vercel env pull --token $VERCEL_TOKEN --environment=production",
-    "env:prod": "   pnpm vercel:link:prod && vercel env pull --token $VERCEL_TOKEN --environment=production",
-    "env:staging": "pnpm vercel:link:stag && vercel env pull --token $VERCEL_TOKEN --environment=production",
-    "format": "prisma format",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "DB_MIGRATING=true drizzle-kit push:pg",
+    "db:seed": "DB_SEEDING=true tsx src/seed.ts",
+    "db:studio": "pnpm drizzle-kit studio",
     "lint": "    eslint src/ --ext .ts,.tsx",
-    "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
-    "vercel:link:dev": " vercel link --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --project $VERCEL_PORTAL_PROJECT_DEVELOPMENT --yes",
-    "vercel:link:prod": "vercel link --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --project $VERCEL_PORTAL_PROJECT_PRODUCTION --yes",
-    "vercel:link:stag": "vercel link --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --project $VERCEL_PORTAL_PROJECT_STAGING --yes",
-    "postinstall": "pnpm codegen"
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
+    "@repo/eslint-config": "workspace:^",
     "@types/node": "^20.11.16",
-    "@types/ws": "^8.5.10",
-    "bufferutil": "^4.0.8",
-    "prisma": "^5.13.0",
-    "zod": "^3.22.4",
-    "zod-prisma": "^0.5.4"
+    "drizzle-kit": "^0.20.18",
+    "tsx": "^4.9.3",
+    "zod": "^3.22.4"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.9.1",
-    "@prisma/adapter-neon": "^5.13.0",
-    "@prisma/client": "^5.13.0",
-    "ws": "^8.17.0"
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@repo/common": "workspace:^",
+    "drizzle-orm": "^0.30.10",
+    "drizzle-zod": "^0.5.1"
   },
-  "files": [
-    "/dist"
-  ],
   "main": "./src/index.ts",
   "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "require": "./src/index.ts",
-      "types": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
+    "./neon": "./src/neon.ts",
     "./*": {
       "import": "./src/*/index.ts",
       "require": "./src/*/index.ts",
@@ -53,8 +40,9 @@
   "typesVersions": {
     "*": {
       "*": [
-        "./src/*/index.ts",
-        "./src/index.ts"
+        "./src/index.ts",
+        "./src/neon.ts",
+        "./src/*/index.ts"
       ]
     }
   }

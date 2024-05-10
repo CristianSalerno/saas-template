@@ -13,27 +13,24 @@
     "@repo/common": "workspace:^",
     "analytics": "^0.8.11",
     "next": "^14.1.0",
+    "react": "^18.2.0",
     "use-analytics": "^1.1.0",
-    "zod": "^3.22.4",
-    "react": "^18.2.0"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@repo/config": "workspace:^",
+    "@repo/eslint-config": "workspace:^",
     "@types/react": "^18.2.0"
   },
   "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "require": "./src/index.ts"
-    },
-    "./components": {
-      "import": "./src/components/index.ts",
-      "require": "./src/components/index.ts"
-    }
+    ".": "./src/analytics.ts",
+    "./components": "./src/components/index.ts"
   },
   "typesVersions": {
     "*": {
       "*": [
-        "./src/index.ts",
+        "./src/analytics.ts",
+        "./src/declarations.d.ts",
         "./src/components/index.ts"
       ]
     }

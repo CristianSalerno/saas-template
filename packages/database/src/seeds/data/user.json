@@ -1,0 +1,20 @@
+[
+  {
+    "name": "John Smith",
+    "phone": "555-234-5673",
+    "email": "john.smith@example.com",
+    "accounts": []
+  },
+  {
+    "name": "Jane Doe",
+    "phone": "555-234-5678",
+    "email": "jane.doe@example.com",
+    "accounts": []
+  },
+  {
+    "name": "Michael Jones",
+    "phone": "555-345-6789",
+    "email": "michael.jones@example.com",
+    "accounts": []
+  }
+]

@@ -10,6 +10,8 @@ const nextjsConfig = {
     "@repo/auth",
     "@repo/trpc",
     "@repo/lib",
+    "@repo/analytics",
+    "@repo/stripe",
   ],
   images: {
     remotePatterns: [

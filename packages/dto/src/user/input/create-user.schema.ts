@@ -1,6 +1,6 @@
-import { UserModel } from "@repo/database/zod";
+import { InsertUserSchema } from "@repo/database/dto";
 
-export const CreateUserSchema = UserModel.pick({
+export const CreateUserSchema = InsertUserSchema.pick({
   email: true,
   name: true,
   role: true,

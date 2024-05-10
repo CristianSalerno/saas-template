@@ -1,9 +1,9 @@
-import z from "zod";
-import { UserModel } from "@repo/database/zod";
+import { type z } from "zod";
+import { InsertUserSchema } from "@repo/database/dto";
 import fakeEmailDomainsArray from "./fake-email-domains-array.json";
 import fakeEmailDomains from "./fake-email-domains.json";
 
-export const EmailLinkSchema = UserModel.pick({
+export const EmailLinkSchema = InsertUserSchema.pick({
   email: true,
 }).refine(
   (data) => {

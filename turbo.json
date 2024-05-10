@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
+  "globalDotEnv": [".env", "./apps/portal/.env.local"],
   "globalEnv": [
     "NEXT_PUBLIC_APP_ENV",
     "NEXT_PUBLIC_NODE_ENV",
@@ -36,9 +37,6 @@
     "clean": {
       "cache": false
     },
-    "codegen": {
-      "dependsOn": ["^codegen"]
-    },
     "ci:prepare": {},
     "dev": {
       "cache": false,
@@ -46,6 +44,22 @@
     },
     "db:up": {},
     "db:down": {},
+    "db:generate": {
+      "dotEnv": ["./apps/portal/.env.local"],
+      "dependsOn": ["^db:generate"]
+    },
+    "db:migrate": {
+      "dotEnv": ["./apps/portal/.env.local"],
+      "persistent": true
+    },
+    "db:seed": {
+      "dotEnv": ["./apps/portal/.env.local"],
+      "dependsOn": ["^db:seed"]
+    },
+    "db:studio": {
+      "dotEnv": ["./apps/portal/.env.local"],
+      "persistent": true
+    },
     "env:local": {
       "cache": false
     },
@@ -59,19 +73,26 @@
       "cache": false
     },
     "lint": {
+      "cache": false,
       "dependsOn": ["^lint"]
     },
     "lint:fix": {
+      "cache": false,
       "dependsOn": ["^lint:fix"]
     },
     "test": {
+      "cache": false,
+      "dotEnv": ["./apps/portal/.env.local"],
       "dependsOn": ["^test"]
     },
     "test:server": {
+      "cache": false,
+      "dotEnv": ["./apps/portal/.env.local"],
       "dependsOn": ["^test:server"]
     },
     "test:watch": {
       "cache": false,
+      "dotEnv": ["./apps/portal/.env.local"],
       "persistent": true
     }
   }

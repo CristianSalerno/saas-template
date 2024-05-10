@@ -9,12 +9,14 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.quickSuggestions": { "strings": "on" },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "editor.suggest.insertMode": "replace"
 }

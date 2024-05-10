@@ -1,7 +1,7 @@
 "use client";
 
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
-import { cn } from "@repo/common";
+import { cn } from "@repo/common/ui";
 import { forwardRef } from "react";
 
 const Separator = forwardRef<
@@ -16,7 +16,7 @@ const Separator = forwardRef<
       className={cn(
         orientation === "horizontal"
           ? "relative w-full"
-          : "shrink-0 bg-border h-full w-[1px]",
+          : "bg-border h-full w-[1px] shrink-0",
         className,
       )}
       decorative={decorative}
@@ -29,7 +29,7 @@ const Separator = forwardRef<
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">{children}</span>
+            <span className="bg-background text-muted-foreground px-2">{children}</span>
           </div>
         </>
       )}

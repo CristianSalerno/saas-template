@@ -1,10 +1,10 @@
 import { faker } from "@faker-js/faker";
 import { describe, expect, it } from "vitest";
 import { ZodError } from "zod";
-import { UserRole } from "@repo/database";
+import { UserRole } from "@repo/database/dto";
 import { UpdateUserSchema } from "./update-user.schema";
 
-describe("update User Schema", () => {
+describe("update user schema", () => {
   it("successfully parses payload", () => {
     expect.hasAssertions();
 

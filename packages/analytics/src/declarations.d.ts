@@ -46,7 +46,6 @@ declare module "@analytics/mixpanel" {
     };
   }
 
-  // eslint-disable-next-line import/no-default-export -- Missing type definitions
   export default function mixpanelPlugin(options: MixpanelPluginOptions): MixpanelPlugin;
 }
 
@@ -69,7 +68,6 @@ declare module "@analytics/google-analytics" {
     customScriptSrc?: string;
   }
 
-  // eslint-disable-next-line import/no-default-export -- Missing type definitions
   export default function googleAnalyticsPlugin(
     options: GoogleAnalyticsPluginOptions,
   ): Record<string, unknown>;

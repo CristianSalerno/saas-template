@@ -1,5 +1,5 @@
 import { type Session as NextAuthSession } from "next-auth";
-import { UserRole } from "@repo/database";
+import { type UserRole } from "@repo/database/dto";
 
 /* -------------------------------------------------------------------------- */
 /*                                 TYPE ROOTS                                 */
@@ -52,7 +52,7 @@ declare module "next-auth" {
   }
 }
 
-export interface Session extends NextAuthSession {}
+export type Session = NextAuthSession;
 
 /* -------------------------------------------------------------------------- */
 /*                                   EXPORTS                                  */
@@ -64,4 +64,4 @@ export { type JWT } from "next-auth/jwt";
 export { default as GoogleProvider } from "next-auth/providers/google";
 export { default as ResendProvider } from "next-auth/providers/resend";
 
-export { PrismaAdapter } from "@auth/prisma-adapter";
+export { DrizzleAdapter } from "@auth/drizzle-adapter";

@@ -11,11 +11,16 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "~/*": ["./*"],
+      "@/app/*": ["./src/app/*"],
+      "@/server/*": ["./src/server/*"],
+      "@/providers/*": ["./src/providers/*"],
+      "@/config/*": ["./src/config/*"]
     }
   },
   "include": [
     "next-env.d.ts",
+    "declarations.d.ts",
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",

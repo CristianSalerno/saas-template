@@ -4,8 +4,8 @@ import { chromium } from "@playwright/test";
 // eslint-disable-next-line import/no-default-export -- Required for Playwright to run
 export default async function globalConfig() {
   const storagePath = path.resolve(__dirname, "storageState.json");
-  const date = new Date();
   const sessionToken = "9468389e-ff19-4eb4-bf73-b56516e9b7e8";
+  const date = new Date();
 
   //   await prisma.user.upsert({
   //     where: {

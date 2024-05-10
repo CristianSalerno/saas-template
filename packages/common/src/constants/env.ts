@@ -1,12 +1,12 @@
 export enum AppEnvironments {
-  production = "production",
-  staging = "staging",
-  development = "development",
-  local = "local",
+  Production = "production",
+  Staging = "staging",
+  Development = "development",
+  Local = "local",
 }
 
 export enum NodeEnvs {
-  production = "production",
-  development = "development",
-  test = "test",
+  Production = "production",
+  Development = "development",
+  Test = "test",
 }

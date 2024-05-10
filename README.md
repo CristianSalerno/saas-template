@@ -8,7 +8,7 @@
 - React (Vite), for the frontend
 - NestJS, for the backend
 - Postgres (primary database)
-- Prisma ORM, which frees you to switch to any other relational database with a few minor changes in the code
+- Drizzle ORM, which frees you to switch to any other relational database with a few minor changes in the code
 - Redis (for caching, session storage and resume statistics)
 - Minio (for object storage: to store avatars, resume PDFs and previews)
 - Browserless (for headless chrome, to print PDFs and generate previews)
@@ -22,7 +22,7 @@
 - `@repo/ui`: a stub React component library shared by both `portal` and `marketing` applications
 - `@repo/config`: `tsconfig.json`s used throughout the monorepo and `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`) and global tailwind config.
 - `@repo/common`: common constants, utils, components, hooks to use accross apps
-- `@repo/database`: `prisma` database.
+- `@repo/database`: `drizzle` database.
 <!-- - `@repo/auth`: next library for firebase auth. -->
 - `@repo/scripts`: scripts for complex use-cases.
 

@@ -11,12 +11,14 @@ module.exports = {
   importOrder: [
     "^reflect-metadata$",
     "(.*)/__mocks__/(.*)",
+    "node:*",
     "<THIRD_PARTY_MODULES>",
     "^@repo/(.*)$",
+    "^~/(.*)$",
     "^@/(.*)$",
     "^[./]",
   ],
-  plugins: ["@trivago/prettier-plugin-sort-imports"],
+  plugins: ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   overrides: [
     {
       files: "*.tsx",

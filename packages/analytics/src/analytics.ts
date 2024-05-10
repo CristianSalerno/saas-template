@@ -1,12 +1,14 @@
+"use client";
+
 import GoogleAnalyticsPlugin from "@analytics/google-analytics";
 import MixpanelPlugin from "@analytics/mixpanel";
 import { Analytics } from "analytics";
-import { AppEnvironments } from "@repo/common";
-import { env } from "./config";
+import { env } from "@repo/common/client-env";
+import { AppEnvironments } from "@repo/common/constants";
 
 export const analytics = Analytics({
   app: "@repo/analytics",
-  debug: env.APP_ENV === AppEnvironments.local,
+  debug: env.APP_ENV === AppEnvironments.Local,
   plugins: [
     MixpanelPlugin({
       token: env.MIXPANEL_TOKEN,
@@ -19,11 +21,11 @@ export const analytics = Analytics({
         // cookie_name: "",
         store_google: true,
         save_referrer: true,
-        test: env.APP_ENV !== AppEnvironments.production,
-        verbose: env.APP_ENV === AppEnvironments.local,
+        test: env.APP_ENV !== AppEnvironments.Production,
+        verbose: env.APP_ENV === AppEnvironments.Local,
         img: false,
         track_pageview: true,
-        debug: env.APP_ENV === AppEnvironments.local,
+        debug: env.APP_ENV === AppEnvironments.Local,
         track_links_timeout: 300,
         cookie_expiration: 365,
         upgrade: false,

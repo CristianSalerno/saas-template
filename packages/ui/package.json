@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
+    "@repo/eslint-config": "workspace:^",
     "@turbo/gen": "^1.12.2",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.11.16",
@@ -21,15 +22,18 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@repo/common": "workspace:^",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "lucide-react": "^0.378.0",
     "react-hook-form": "^7.51.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
@@ -39,6 +43,9 @@
   "exports": {
     ".": {
       "import": "./src/index.ts"
+    },
+    "./icons": {
+      "import": "./src/icons/index.tsx"
     },
     "./styles/shared-globals.css": "./src/styles/shared-globals.css"
   }

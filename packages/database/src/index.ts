@@ -1,1 +1,1 @@
-export * from "@prisma/client";
+export * from "drizzle-orm";

@@ -5,15 +5,12 @@
     "clean": "git clean -xdf .turbo node_modules .next .cache tsconfig.tsbuildinfo",
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "test": "vitest run",
-    "test:ui": "vitest --ui",
-    "test:watch": "vitest watch"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@repo/auth": "workspace:^",
     "@repo/common": "workspace:*",
     "@repo/database": "workspace:^",
-    "@repo/auth": "workspace:^",
     "@tanstack/react-query": "^5.29.2",
     "@trpc/client": "11.0.0-rc.340",
     "@trpc/react-query": "11.0.0-rc.340",
@@ -27,6 +24,7 @@
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
+    "@repo/eslint-config": "workspace:^",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.11.16",
     "@types/uuid": "^9.0.8"
@@ -34,34 +32,17 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "require": "./src/index.ts"
-    },
-    "./container": {
-      "import": "./src/container/index.ts",
-      "require": "./src/container/index.ts"
-    },
-    "./constants": {
-      "import": "./src/constants/index.ts",
-      "require": "./src/constants/index.ts"
-    },
-    "./resolver": {
-      "import": "./src/resolver/index.ts",
-      "require": "./src/resolver/index.ts"
-    },
-    "./context": {
-      "import": "./src/context.ts",
-      "require": "./src/context.ts"
-    }
+    ".": "./src/trpc.ts",
+    "./container": "./src/container.ts",
+    "./resolver": "./src/resolver.ts",
+    "./context": "./src/context.ts"
   },
   "typesVersions": {
     "*": {
       "*": [
-        "src/index.ts",
-        "src/container/index.ts",
-        "src/constants/index.ts",
-        "src/resolver/index.ts",
+        "src/trpc.ts",
+        "src/container.ts",
+        "src/resolver.ts",
         "src/context.ts"
       ]
     }

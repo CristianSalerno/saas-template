@@ -1,7 +1,7 @@
 import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { Context } from "./context";
+import { type Context } from "./context";
 
 export { type Context, type ProtectedContext } from "./context";
 

@@ -16,17 +16,17 @@ import {
   setCurrentClient,
 } from "@sentry/nextjs";
 import * as Sentry from "@sentry/nextjs";
-import { AppEnvironments } from "@repo/common";
-import { env } from "./config/env/client";
-import { version } from "./package.json";
+import { env } from "@repo/common/client-env";
+import { AppEnvironments } from "@repo/common/constants";
+import packageJson from "./package.json";
 
 export const sentryClientConfig: Sentry.BrowserOptions = {
   dsn: env.SENTRY_DSN,
   enabled:
-    env.APP_ENV === AppEnvironments.development ||
-    env.APP_ENV === AppEnvironments.staging ||
-    env.APP_ENV === AppEnvironments.production,
-  release: `@portal-${env.APP_ENV}-${version}`,
+    env.APP_ENV === AppEnvironments.Development ||
+    env.APP_ENV === AppEnvironments.Staging ||
+    env.APP_ENV === AppEnvironments.Production,
+  release: `@portal-${env.APP_ENV}-${packageJson.version}`,
   initialScope: {
     tags: {
       service: `@portal-${env.APP_ENV}`,
@@ -51,7 +51,7 @@ export const sentryClientConfig: Sentry.BrowserOptions = {
   // For client-side you might have to define tracePropagationTargets to get around possible Browser CORS
   tracePropagationTargets: [
     // /^https:\/\/[YOUR APP NAME HERE]-(development|staging|production)\.vercel\.app\/$/,
-    env.APP_ENV === AppEnvironments.local ? /^http:\/\/localhost:3001\/$/ : "",
+    env.APP_ENV === AppEnvironments.Local ? /^http:\/\/localhost:3001\/$/ : "",
   ],
 
   // Queue events using the browsers' IndexedDB storage. Once your application comes back online, all events will be sent together.
@@ -126,7 +126,7 @@ export const sentryClient = new BrowserClient({
     const exception = hint.originalException as Error;
 
     // We only want to capture Errors that have a Stack Trace and that are not Anonymous Errors
-    return exception?.stack && !exception.stack.includes("<anonymous>") ? event : null;
+    return exception.stack && !exception.stack.includes("<anonymous>") ? event : null;
   },
 });
 
@@ -135,6 +135,6 @@ export const sentryClient = new BrowserClient({
 setCurrentClient(sentryClient);
 
 // Loads this Dynamically to avoid adding this to the main bundle (initial load)
-import("@sentry/nextjs").then(({ BrowserTracing }) => {
+void import("@sentry/nextjs").then(({ BrowserTracing }) => {
   sentryClient.addIntegration(new BrowserTracing());
 });

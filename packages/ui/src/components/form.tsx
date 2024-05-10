@@ -1,26 +1,26 @@
 "use client";
 
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import * as LabelPrimitive from "@radix-ui/react-label";
+import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
-import { cn } from "@repo/common";
+import { cn } from "@repo/common/ui";
 import * as React from "react";
 import {
   Controller,
-  ControllerProps,
-  FieldPath,
-  FieldValues,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
   FormProvider,
   useFormContext,
 } from "react-hook-form";
 import { Label } from "./label";
 
-type FormFieldContextValue<
+interface FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = {
+> {
   name: TName;
-};
+}
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
   {} as FormFieldContextValue,
@@ -60,9 +60,9 @@ const useFormField = () => {
   };
 };
 
-type FormItemContextValue = {
+interface FormItemContextValue {
   id: string;
-};
+}
 
 const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue,
@@ -107,7 +107,7 @@ const FormControl = React.forwardRef<
   return (
     <Slot
       aria-describedby={
-        !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`
+        !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={Boolean(error)}
       id={formItemId}
@@ -126,7 +126,7 @@ const FormDescription = React.forwardRef<
 
   return (
     <p
-      className={cn("text-[0.8rem] text-muted-foreground", className)}
+      className={cn("text-muted-foreground text-[0.8rem]", className)}
       id={formDescriptionId}
       ref={ref}
       {...props}
@@ -140,7 +140,7 @@ const FormMessage = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
+  const body = error ? String(error.message) : children;
 
   if (!body) {
     return null;
@@ -149,8 +149,8 @@ const FormMessage = React.forwardRef<
   return (
     <p
       className={cn(
-        "flex items-center gap-1 mt-2",
-        "text-[0.8rem] font-medium text-destructive",
+        "mt-2 flex items-center gap-1",
+        "text-destructive text-[0.8rem] font-medium",
         className,
       )}
       id={formMessageId}

@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { describe, expect, it } from "vitest";
 import { ZodError } from "zod";
 import { EmailLinkSchema } from "./email-link.schema";
@@ -8,7 +7,7 @@ describe("email Link Schema", () => {
     expect.hasAssertions();
 
     const payload = {
-      email: faker.internet.email(),
+      email: "test-email@gmail.com",
     };
 
     expect(EmailLinkSchema.parse(payload)).toMatchObject(payload);

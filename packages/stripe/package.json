@@ -1,0 +1,35 @@
+{
+  "name": "@repo/stripe",
+  "scripts": {
+    "clean": "git clean -xdf .turbo node_modules dist .cache tsconfig.tsbuildinfo",
+    "lint": "eslint src/ --ext .ts,.tsx",
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix"
+  },
+  "main": "src/index.ts",
+  "dependencies": {
+    "@repo/common": "workspace:^",
+    "@stripe/react-stripe-js": "^2.7.0",
+    "@stripe/stripe-js": "^3.3.0",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "stripe": "^15.5.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:^",
+    "@repo/eslint-config": "workspace:^",
+    "@types/react": "^18.2.0"
+  },
+  "exports": {
+    ".": "./src/stripe.ts",
+    "./providers": "./src/providers/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/index.ts",
+        "./src/providers/index.ts"
+      ]
+    }
+  }
+}

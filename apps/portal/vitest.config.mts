@@ -8,7 +8,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     exclude: [
-      "server/**",
+      "./src/server/**",
       "**/node_modules/**",
       "**/dist/**",
       "**/cypress/**",

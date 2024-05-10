@@ -1,5 +1,6 @@
 import { vi } from "vitest";
-import { Session } from "@repo/auth";
+import type { Session } from "@repo/auth";
+import { UserRole } from "@repo/database/dto";
 
 /* -------------------------------------------------------------------------- */
 /*                                Global Stubs                                */
@@ -40,7 +41,7 @@ vi.mock("@/server/auth", () => ({
         name: "",
         email: "",
         image: "",
-        role: "Admin",
+        role: UserRole.Admin,
       },
       expires: new Date().toISOString(),
     }) satisfies Session,

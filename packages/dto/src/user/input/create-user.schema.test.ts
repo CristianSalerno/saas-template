@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { describe, expect, it } from "vitest";
 import { ZodError } from "zod";
-import { UserRole } from "@repo/database";
+import { UserRole } from "@repo/database/dto";
 import { CreateUserSchema } from "./create-user.schema";
 
 describe("create User Schema", () => {
@@ -12,7 +12,7 @@ describe("create User Schema", () => {
     const payload = {
       email: faker.internet.email(),
       name: faker.person.firstName(),
-      role: UserRole.User,
+      role: UserRole.Admin,
       image: faker.image.url(),
     };
 

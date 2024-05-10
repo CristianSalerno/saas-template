@@ -1,0 +1,22 @@
+{
+  "name": "@repo/eslint-config",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.19",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@typescript-eslint/parser": "^5.59.7",
+    "@vercel/style-guide": "^6.0.0",
+    "eslint-config-next": "^14.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-turbo": "^1.10.12",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-sonarjs": "^0.19.0",
+    "eslint-plugin-tailwindcss": "^3.14.2",
+    "eslint-plugin-typescript-paths": "^0.0.33",
+    "prettier-plugin-tailwindcss": "^0.5.14"
+  }
+}
