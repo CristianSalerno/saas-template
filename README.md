@@ -1,86 +1,147 @@
-# Principles
+# SaaS Starter Kit
+
+The Open Source Turbo SaaS boilerplate.
+
+Please star ⭐ the repo if you want us to continue developing and improving the SaaS Starter Kit! 😀
+
+## Principles
 
 - Colocation
-- Developer Experience
+- Modularized code
+- Simplicity for DX
 
-## Built With
+## 🛠️ Built With
 
-- React (Vite), for the frontend
-- NestJS, for the backend
-- Postgres (primary database)
-- Drizzle ORM, which frees you to switch to any other relational database with a few minor changes in the code
-- Redis (for caching, session storage and resume statistics)
-- Minio (for object storage: to store avatars, resume PDFs and previews)
-- Browserless (for headless chrome, to print PDFs and generate previews)
-- SMTP Server (to send password recovery emails)
-- Sentry (for error tracing and performance monitoring)
-- GitHub/Google OAuth (for quickly authenticating users)
+- [Next.js](https://nextjs.org)
+  This is a React framework that provides features such as server-side rendering and static site generation. It's used for building the user interface of your application. The main configuration for Next.js can be found in next.config.js.
+- [Tailwind CSS](https://tailwindcss.com)
+  This is a utility-first CSS framework for rapidly building custom user interfaces. It's used for styling the application. The configuration for Tailwind CSS can be found in postcss.config.js.
+- [Postgres](https://www.postgresql.org)
+  This is a powerful, open source object-relational database system. It's used for storing application data. The connection to Postgres is likely managed through Prisma.
+- [React](https://reactjs.org)
+  This is a JavaScript library for building user interfaces. It's used for creating the interactive elements of your application. The React components are located in the components directory.
+- [Drizzle](https://orm.drizzle.team/)
+  Drizzle ORM is a headless TypeScript ORM with a head 🐲. It’s the only ORM with both relational and SQL-like query APIs, providing you best of both worlds when it comes to accessing your relational data. Drizzle is lightweight, performant, typesafe, non lactose, gluten-free, sober, flexible and serverless-ready by design. 
+- [TypeScript](https://www.typescriptlang.org)
+  This is a typed superset of JavaScript that compiles to plain JavaScript. It's used to make the code more robust and maintainable. TypeScript definitions and configurations can be found in files like next-env.d.ts and i18next.d.ts.
+- [Stripe](https://stripe.com) (Provides Payments)
+  This is a service for handling payments. It's used to process payments for the application. The integration of Stripe is likely found in the files associated with billing and subscriptions.
+- [Playwright](https://playwright.dev) (Provides E2E tests)
+  This is a Node.js library for automating browsers. It's used to run end-to-end tests on the application. The Playwright configuration and tests can be found in the tests directory.
+- [Docker](https://www.docker.com) (Provides Docker Compose)
+  This is a platform for developing, shipping, and running applications. It's used to containerize the application and its dependencies. The Docker configuration can be found in the Dockerfile and docker-compose.yml.
+- [NextAuth.js](https://next-auth.js.org) (Provides Authentication)
+  This is a complete open-source authentication solution for Next.js applications. It's used to handle user authentication and authorization. The NextAuth.js configuration and providers can be found in the pages/api/auth/[...nextauth].ts file.
 
-### Apps and Packages
+## 🚀 Deployment
 
-- `@repo/portal`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `portal` and `marketing` applications
-- `@repo/config`: `tsconfig.json`s used throughout the monorepo and `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`) and global tailwind config.
-- `@repo/common`: common constants, utils, components, hooks to use accross apps
-- `@repo/database`: `drizzle` database.
-<!-- - `@repo/auth`: next library for firebase auth. -->
-- `@repo/scripts`: scripts for complex use-cases.
+<!-- https%3A%2F%2Fgithub.com%2Fboxyhq%2Fsaas-starter-kit&env=NEXTAUTH_SECRET,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASSWORD,SMTP_FROM,DATABASE_URL,APP_URL -->
 
-### Setup
+<a href="https://vercel.com/new/clone?repository-url=// TODO: implement me ">
+<img width="90" alt="Deploy with Vercel" src="https://vercel.com/button" />
+</a>
 
-1. Install Packages: `pnpm install`
-2. Setup Vercel Token: `export VERCEL_TOKEN={TOKEN}`
-3. Fetch Env Vars: `pnpm env:local`
-4. Run App: `pnpm dev`
+## ✨ Getting Started
 
-### Env
+Please follow these simple steps to get a local copy up and running.
 
-This repo uses `vercel/env` to manage environment variables
+### Prerequisites
 
-- Fetch variables to run Apps locally
+- Node.js (Version: >=18.x)
+- PNPM
 
-````sh
-### Get env vars
-pnpm env:local
+### Development
 
-### Add env vars
-- Get the ENV example for each app
-- Go to vercel settings/environment-variables and import the file with updated values
+#### 1. Setup
 
-### Build
+- [Fork](https://github.com/Albertobar94/saas-template) the repository
+- Clone the repository by using this command:
 
-To build all apps and packages, run the following command:
-
+```bash
+git clone https://github.com/<your_github_username>/saas-template.git
 ```
-cd my-turborepo
-pnpm build
+
+#### 2. Go to the project folder
+
+```bash
+cd saas-template
 ```
 
-### Develop
+#### 3. Install dependencies
 
-To develop all apps and packages, run the following command:
-
+```bash
+pnpm install --frozen-lockfile
 ```
-cd my-turborepo
+
+#### 4. Set up your .env file
+
+Duplicate `.env.example` to `.env`.
+
+```bash
+cp .env.example .env
+```
+
+#### 5. Start the server
+
+In a development environment:
+
+```bash
 pnpm dev
 ```
-````
 
-# Development Processes
+#### 6. Start the Prisma Studio
 
-### Vercel: Steps to create projects
+Prisma Studio is a visual editor for the data in your database.
 
-#### Create project
+```bash
+pnpm db:studio
+```
 
-1. Import repository
-2. Set Project Name: {ORG}-{APP}-{ENV}
-3. Set Root directory: To root
-4. Set Build command: turbo run build --filter {APP}
-5. Set output Directory
-6. Set install command
-7. Set Buld & Deployment Settings
-8. Add git integration (Optional)
-9. Set Ignore Build Step
-10. Add env vars
-11. Set up prod domain
-12. Remove pull request comments and commit comments (Optional)
+#### 7. Testing
+
+
+```bash
+pnpm test
+```
+
+### 🚀 Apps and Packages
+
+Apps
+- `@repo/portal`: Main Web Portal with authorization for Admins and Users. Built with [Next.js](https://nextjs.org/).
+- `@repo/portal-e2e`: E2E test repo for Portal app. Built with [Playwright](https://playwright.dev/)
+
+
+Packages
+
+- `@repo/auth`: authentication module. Built with [Auth.js](https://authjs.dev/).
+- `@repo/analytics`: analytics focused module. Built with [Analytics](https://getanalytics.io/).
+- `@repo/common`: shared code for all apps and packages.
+- `@repo/config`: repo configuration files.
+- `@repo/database`: portal database. Built with [Drizzle](https://orm.drizzle.team/)
+- `@repo/dto`: data transfer objects for portal app. Built with [Zod](https://zod.dev/)
+- `@repo/eslint-config`: eslint config files. Built with [Eslint](https://eslint.org/)
+- `@repo/lib`: shared external libraries that require some configuration and are reused in all apps and packages.
+- `@repo/stripe`: module dedicated to stripe code. Built with [Stripe](https://stripe.com).
+- `@repo/trpc`: client server library settings for portal app. Built with [Trpc](https://trpc.io/).
+- `@repo/ui`: a component library shared by all apps. Built with [Shadcn/ui](https://ui.shadcn.com/)
+
+
+## 🥇 Features
+
+- Create account
+- Sign in with Magic Link
+- Sign in with Google [[Setting up Google OAuth](https://support.google.com/cloud/answer/6158849?hl=en)]
+- Sign in with GitHub [[Creating a Github OAuth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)] 
+- Internationalization
+- Dark mode
+- Roles and Permissions
+- Email notifications
+- E2E tests
+- Drizzle Studio
+- Payments
+- Security Headers
+- Unit and integration tests
+
+## 🛡️ License
+
+[Apache 2.0 License](https://github.com/boxyhq/saas-starter-kit/blob/main/LICENSE)
