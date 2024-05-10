@@ -73,15 +73,32 @@ cd saas-template
 pnpm install --frozen-lockfile
 ```
 
-#### 4. Set up your .env file
+#### 4. Configure Vercel
 
-Duplicate `.env.example` to `.env`.
+1. Create vercel account
+1. Create project
+1. Disable `Automatically expose System Environment Variables`
+1. Get values for repo .env file
+1. Duplicate `.env.example` to `.env` and add values.
 
 ```bash
 cp .env.example .env
 ```
 
-#### 5. Start the server
+#### 5. Set up your apps/portal .env.local file
+
+1. Configure all providers and get values
+1. Add the env vars on each environment
+  - Preview
+  - Development
+  - Production
+1. Fetch env vars
+
+```bash
+pnpm env:{preview / dev / prod}
+```
+
+#### 6. Start the server
 
 In a development environment:
 
@@ -89,9 +106,9 @@ In a development environment:
 pnpm dev
 ```
 
-#### 6. Start the Prisma Studio
+#### 7. Start the Drizzle Studio or Connect to Neon
 
-Prisma Studio is a visual editor for the data in your database.
+Drizzle Studio is a visual editor for the data in your database.
 
 ```bash
 pnpm db:studio
@@ -102,6 +119,9 @@ pnpm db:studio
 
 ```bash
 pnpm test
+pnpm test:server
+# pnpm test:integration SOON!
+# pnpm test:e2e SOON!
 ```
 
 ### 🚀 Apps and Packages

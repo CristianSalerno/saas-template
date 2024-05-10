@@ -6,7 +6,7 @@ import { createTRPCReact } from "@trpc/react-query";
 import { useMemo } from "react";
 import { SuperJSON } from "superjson";
 import { v4 as generateUuidV4 } from "uuid";
-import { env } from "@repo/common/client-env";
+import { env } from "@repo/common/common-env";
 import { Headers } from "@repo/common/constants";
 import { type AppRouter } from "@/server/app-router";
 

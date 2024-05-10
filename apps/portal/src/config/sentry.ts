@@ -1,10 +1,10 @@
 import type * as Sentry from "@sentry/nextjs";
+import { env } from "@repo/common/client-env";
 import { AppEnvironments } from "@repo/common/constants";
-import { env } from "@repo/common/server-env";
 import packageJson from "~/package.json";
 
 export const sentryServer: Sentry.NodeOptions = {
-  dsn: env.SENTRY_DSN,
+  dsn: env.SENTRY_DSN, // Server DSN in server env ?
   enabled:
     env.APP_ENV === AppEnvironments.Development ||
     env.APP_ENV === AppEnvironments.Staging ||

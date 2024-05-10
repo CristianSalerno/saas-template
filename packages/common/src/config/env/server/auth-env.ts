@@ -2,10 +2,10 @@ import { z } from "zod";
 
 export const AuthEnv = z
   .object({
-    AUTH_SECRET: z.string().min(1),
-    AUTH_GOOGLE_ID: z.string().min(1),
-    AUTH_GOOGLE_SECRET: z.string().min(1),
-    AUTH_RESEND_KEY: z.string().min(1),
+    AUTH_SECRET: z.string(),
+    AUTH_GOOGLE_ID: z.string(),
+    AUTH_GOOGLE_SECRET: z.string(),
+    AUTH_RESEND_KEY: z.string(),
   })
   .parse({
     AUTH_SECRET: process.env.AUTH_SECRET,

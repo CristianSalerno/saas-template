@@ -1,5 +1,5 @@
 import { type MetadataRoute } from "next";
-import { env } from "@repo/common/client-env";
+import { env } from "@repo/common/common-env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

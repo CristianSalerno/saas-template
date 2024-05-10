@@ -54,7 +54,7 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
       vercel:
-        specifier: ^33.5.3
+        specifier: ^33.7.1
         version: 33.7.1
       vite-tsconfig-paths:
         specifier: ^4.3.2

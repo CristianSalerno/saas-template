@@ -63,10 +63,10 @@
     "env:local": {
       "cache": false
     },
-    "env:dev": {
+    "env:preview": {
       "cache": false
     },
-    "env:staging": {
+    "env:dev": {
       "cache": false
     },
     "env:prod": {

@@ -25,6 +25,7 @@
     ".": "./src/index.ts",
     "./ui": "./src/ui/index.ts",
     "./constants": "./src/constants/index.ts",
+    "./common-env": "./src/config/env/common/index.ts",
     "./client-env": "./src/config/env/client/index.ts",
     "./server-env": "./src/config/env/server/index.ts",
     "./server-env/system-env": "./src/config/env/server/system-env.ts",
@@ -34,6 +35,7 @@
     "*": {
       "*": [
         "./src/index.ts",
+        "./src/config/env/common/index.ts",
         "./src/config/env/client/index.ts",
         "./src/config/env/server/index.ts",
         "./src/config/env/server/system-env.ts",

@@ -27,9 +27,9 @@ const sentrySettings = {
   // We don't want Sentry to emit logs
   silent: true,
   // Define the Sentry Organisation
-  org: process.env.SENTRY_ORG,
+  org: process.env.NEXT_PUBLIC_SENTRY_ORG,
   // Define the Sentry Project on our Sentry Organisation
-  project: process.env.SENTRY_PROJECT,
+  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT,
 };
 
 /** @type {import('@sentry/nextjs/types/config/types').UserSentryOptions} */
