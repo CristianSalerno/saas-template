@@ -21,7 +21,7 @@ Please star ⭐ the repo if you want us to continue developing and improving the
 - [React](https://reactjs.org)
   This is a JavaScript library for building user interfaces. It's used for creating the interactive elements of your application. The React components are located in the components directory.
 - [Drizzle](https://orm.drizzle.team/)
-  Drizzle ORM is a headless TypeScript ORM with a head 🐲. It’s the only ORM with both relational and SQL-like query APIs, providing you best of both worlds when it comes to accessing your relational data. Drizzle is lightweight, performant, typesafe, non lactose, gluten-free, sober, flexible and serverless-ready by design. 
+  Drizzle ORM is a headless TypeScript ORM with a head 🐲. It’s the only ORM with both relational and SQL-like query APIs, providing you best of both worlds when it comes to accessing your relational data. Drizzle is lightweight, performant, typesafe, non lactose, gluten-free, sober, flexible and serverless-ready by design.
 - [TypeScript](https://www.typescriptlang.org)
   This is a typed superset of JavaScript that compiles to plain JavaScript. It's used to make the code more robust and maintainable. TypeScript definitions and configurations can be found in files like next-env.d.ts and i18next.d.ts.
 - [Stripe](https://stripe.com) (Provides Payments)
@@ -89,9 +89,11 @@ cp .env.example .env
 
 1. Configure all providers and get values
 1. Add the env vars on each environment
-  - Preview
-  - Development
-  - Production
+
+- Preview
+- Development
+- Production
+
 1. Fetch env vars
 
 ```bash
@@ -116,7 +118,6 @@ pnpm db:studio
 
 #### 7. Testing
 
-
 ```bash
 pnpm test
 pnpm test:server
@@ -127,9 +128,9 @@ pnpm test:server
 ### 🚀 Apps and Packages
 
 Apps
+
 - `@repo/portal`: Main Web Portal with authorization for Admins and Users. Built with [Next.js](https://nextjs.org/).
 - `@repo/portal-e2e`: E2E test repo for Portal app. Built with [Playwright](https://playwright.dev/)
-
 
 Packages
 
@@ -145,13 +146,12 @@ Packages
 - `@repo/trpc`: client server library settings for portal app. Built with [Trpc](https://trpc.io/).
 - `@repo/ui`: a component library shared by all apps. Built with [Shadcn/ui](https://ui.shadcn.com/)
 
-
 ## 🥇 Features
 
 - Create account
 - Sign in with Magic Link
 - Sign in with Google [[Setting up Google OAuth](https://support.google.com/cloud/answer/6158849?hl=en)]
-- Sign in with GitHub [[Creating a Github OAuth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)] 
+- Sign in with GitHub [[Creating a Github OAuth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)]
 - Internationalization
 - Dark mode
 - Roles and Permissions

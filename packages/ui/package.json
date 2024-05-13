@@ -1,18 +1,14 @@
 {
   "name": "@repo/ui",
   "private": true,
-  "main": "src/index.ts",
-  "types": "src/index.ts",
   "scripts": {
-    "clean": "git clean -xdf .turbo node_modules dist .cache tsconfig.tsbuildinfo",
+    "clean": "git clean -xdf .turbo node_modules .next .cache .vitest tsconfig.tsbuildinfo",
     "lint": "eslint src/ --ext .ts,.tsx",
-    "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
-    "component": "npx shadcn-ui@latest add"
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
     "@repo/eslint-config": "workspace:^",
-    "@turbo/gen": "^1.12.2",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.11.16",
     "@types/react": "^18.2.0",
@@ -40,13 +36,11 @@
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
   },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "exports": {
-    ".": {
-      "import": "./src/index.ts"
-    },
-    "./icons": {
-      "import": "./src/icons/index.tsx"
-    },
+    ".": "./src/index.ts",
+    "./icons": "./src/icons/index.tsx",
     "./styles/shared-globals.css": "./src/styles/shared-globals.css"
   }
 }

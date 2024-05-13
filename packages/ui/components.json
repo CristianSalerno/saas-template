@@ -9,7 +9,7 @@
   },
   "rsc": false,
   "aliases": {
-    "utils": "@repo/common",
+    "utils": "@repo/common/ui",
     "components": "src/components",
     "ui": "src/components"
   }
