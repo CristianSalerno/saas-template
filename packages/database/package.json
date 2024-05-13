@@ -2,7 +2,7 @@
   "name": "@repo/database",
   "private": true,
   "scripts": {
-    "clean": "git clean -xdf .turbo node_modules .cache tsconfig.tsbuildinfo",
+    "clean": "git clean -xdf .turbo node_modules .next .cache .vitest tsconfig.tsbuildinfo",
     "db:up": "  docker-compose up -d",
     "db:down": "docker-compose down --remove-orphans",
     "db:generate": "drizzle-kit generate:pg",

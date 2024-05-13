@@ -1,0 +1,26 @@
+{
+  "name": "@repo/eslint-plugin-eslint",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "clean": "git clean -xdf .turbo node_modules .next .cache .vitest tsconfig.tsbuildinfo",
+    "lint": "eslint src/ --ext .ts,.tsx",
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix",
+    "postinstall": "pnpm build"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/utils": "^5.62.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:^",
+    "@repo/eslint-config": "workspace:^",
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.12.11",
+    "tsup": "^8.0.2"
+  }
+}

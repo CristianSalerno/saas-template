@@ -1,7 +1,7 @@
 {
   "name": "@repo/analytics",
   "scripts": {
-    "clean": "git clean -xdf .turbo node_modules dist .cache tsconfig.tsbuildinfo",
+    "clean": "git clean -xdf .turbo node_modules .next .cache .vitest tsconfig.tsbuildinfo",
     "lint": "eslint src/ --ext .ts,.tsx",
     "lint:fix": "eslint src/ --ext .ts,.tsx --fix"
   },

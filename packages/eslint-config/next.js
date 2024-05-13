@@ -13,10 +13,11 @@ module.exports = {
     "plugin:typescript-paths/recommended",
     "plugin:sonarjs/recommended",
     "plugin:tailwindcss/recommended",
+    "plugin:@repo/eslint/recommended",
     "eslint-config-turbo",
     "prettier",
   ],
-  plugins: ["only-warn", "typescript-paths", "tailwindcss", "sonarjs"],
+  plugins: ["only-warn", "typescript-paths", "tailwindcss", "@repo/eslint", "sonarjs"],
   rules: {
     "import/named": "off",
     "import/no-default-export": "off",
@@ -58,6 +59,12 @@ module.exports = {
     {
       files: ["**/*.test.tsx", "**/*.spec.tsx"],
       extends: [require.resolve("@vercel/style-guide/eslint/vitest")],
+    },
+    {
+      files: ["**/components/**/*.tsx", "**/app/**/*.tsx"],
+      rules: {
+        "@typescript-eslint/no-misused-promises": "off",
+      },
     },
   ],
 };

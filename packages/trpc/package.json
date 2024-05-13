@@ -2,7 +2,7 @@
   "name": "@repo/trpc",
   "private": true,
   "scripts": {
-    "clean": "git clean -xdf .turbo node_modules .next .cache tsconfig.tsbuildinfo",
+    "clean": "git clean -xdf .turbo node_modules .next .cache .vitest tsconfig.tsbuildinfo",
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix"
